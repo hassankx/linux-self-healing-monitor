@@ -1,0 +1,8 @@
+{
+  "load_per_cpu_warning": 1.5,
+  "memory_used_percent_warning": 90,
+  "disk_used_percent_warning": 90,
+  "restart_cooldown_minutes": 30,
+  "max_journal_error_lines": 40,
+  "restart_allowlist": []
+}
