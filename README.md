@@ -1,3 +1,7 @@
+[🌌 View the black-and-Milky-Way themed page](index.html) · [Open HTML source](https://github.com/hassankx/linux-self-healing-monitor/blob/main/index.html)
+
+> GitHub README pages use GitHub's own theme. Download `index.html` and open it in a browser to see the full starfield design.
+
 # Linux Self-Healing Monitor
 
 A dependency-free Python operations tool for monitoring, troubleshooting, and safely recovering Linux hosts. It is designed as a portfolio-quality SRE starter project and runs in **observe-only mode by default**.
