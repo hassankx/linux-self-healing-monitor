@@ -1,0 +1,153 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>linux-self-healing-monitor | Khaled Hassan</title><style>:root{color-scheme:dark}*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#000;color:#e6eaf0;font:16px/1.75 system-ui,-apple-system,"Segoe UI",sans-serif;isolation:isolate;overflow-x:hidden}
+.space{position:fixed;inset:0;z-index:-1;pointer-events:none;background:#000;overflow:hidden}
+.space:before{content:"";position:absolute;inset:0;background:radial-gradient(2px 2px at 16.83% 69.32%,rgba(255,255,255,0.70) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 58.99% 23.90%,rgba(255,255,255,0.57) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 5.79% 79.79%,rgba(255,255,255,0.72) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 55.87% 84.34%,rgba(255,255,255,0.67) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 51.47% 56.74%,rgba(255,255,255,0.71) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 91.33% 42.02%,rgba(255,255,255,0.55) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 23.71% 26.74%,rgba(255,255,255,0.89) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 6.41% 15.20%,rgba(255,255,255,0.74) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 10.80% 10.29%,rgba(255,255,255,0.61) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 89.65% 64.21%,rgba(255,255,255,0.72) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 33.22% 73.87%,rgba(255,255,255,0.84) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 49.15% 77.31%,rgba(255,255,255,0.52) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 24.52% 62.93%,rgba(255,255,255,0.72) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 68.31% 23.82%,rgba(255,255,255,0.73) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 55.24% 84.68%,rgba(255,255,255,0.49) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 32.52% 17.27%,rgba(255,255,255,0.90) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 72.10% 9.76%,rgba(255,255,255,0.82) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 96.89% 54.37%,rgba(255,255,255,0.62) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 69.92% 2.64%,rgba(255,255,255,0.63) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 81.02% 54.94%,rgba(255,255,255,0.43) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 64.80% 1.55%,rgba(255,255,255,0.57) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 7.85% 80.44%,rgba(255,255,255,0.62) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 99.62% 32.97%,rgba(255,255,255,0.89) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 80.71% 60.43%,rgba(255,255,255,0.78) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 43.31% 92.60%,rgba(255,255,255,0.79) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 96.97% 63.27%,rgba(255,255,255,0.74) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 50.57% 37.47%,rgba(255,255,255,0.85) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 59.78% 16.42%,rgba(255,255,255,0.54) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 83.33% 41.51%,rgba(255,255,255,0.69) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 52.29% 68.37%,rgba(255,255,255,0.54) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 67.93% 53.28%,rgba(255,255,255,0.53) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 12.42% 95.33%,rgba(255,255,255,0.80) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 26.27% 88.11%,rgba(255,255,255,0.55) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 72.72% 47.26%,rgba(255,255,255,0.64) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 83.89% 71.47%,rgba(255,255,255,0.43) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 39.78% 6.18%,rgba(255,255,255,0.44) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 77.20% 55.25%,rgba(255,255,255,0.68) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 62.03% 50.60%,rgba(255,255,255,0.91) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 63.55% 36.45%,rgba(255,255,255,0.67) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 6.09% 90.77%,rgba(255,255,255,0.88) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 37.30% 48.57%,rgba(255,255,255,0.88) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 9.33% 14.81%,rgba(255,255,255,0.72) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 78.22% 52.14%,rgba(255,255,255,0.82) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 33.68% 73.82%,rgba(255,255,255,0.63) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 62.98% 52.96%,rgba(255,255,255,0.61) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 91.88% 89.41%,rgba(255,255,255,0.72) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 60.86% 5.74%,rgba(255,255,255,0.71) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 85.13% 96.83%,rgba(255,255,255,0.47) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 68.78% 49.03%,rgba(255,255,255,0.68) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 61.27% 97.36%,rgba(255,255,255,0.77) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 23.34% 45.21%,rgba(255,255,255,0.91) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 6.06% 90.34%,rgba(255,255,255,0.52) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 16.39% 97.97%,rgba(255,255,255,0.48) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 98.69% 45.36%,rgba(255,255,255,0.58) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 40.20% 71.26%,rgba(255,255,255,0.84) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 27.08% 64.18%,rgba(255,255,255,0.42) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 56.86% 68.40%,rgba(255,255,255,0.42) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 50.58% 26.54%,rgba(255,255,255,0.51) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 28.57% 29.79%,rgba(255,255,255,0.84) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 48.16% 20.58%,rgba(255,255,255,0.71) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 18.19% 3.46%,rgba(255,255,255,0.53) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 80.20% 82.58%,rgba(255,255,255,0.48) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 79.07% 15.81%,rgba(255,255,255,0.54) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 54.03% 19.64%,rgba(255,255,255,0.80) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 55.55% 51.73%,rgba(255,255,255,0.60) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 96.38% 17.51%,rgba(255,255,255,0.54) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 17.11% 24.70%,rgba(255,255,255,0.73) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 33.96% 51.95%,rgba(255,255,255,0.77) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 6.31% 10.35%,rgba(255,255,255,0.78) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 45.18% 80.31%,rgba(255,255,255,0.59) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 99.63% 11.78%,rgba(255,255,255,0.81) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 4.34% 98.07%,rgba(255,255,255,0.46) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 16.96% 53.75%,rgba(255,255,255,0.53) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 75.54% 58.63%,rgba(255,255,255,0.63) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 76.62% 46.11%,rgba(255,255,255,0.86) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 57.53% 79.41%,rgba(255,255,255,0.83) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 34.27% 46.52%,rgba(255,255,255,0.85) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 14.76% 50.64%,rgba(255,255,255,0.85) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 72.37% 69.46%,rgba(255,255,255,0.62) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 85.50% 30.43%,rgba(255,255,255,0.86) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 77.80% 63.72%,rgba(255,255,255,0.54) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 14.76% 7.37%,rgba(255,255,255,0.44) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 66.03% 96.40%,rgba(255,255,255,0.47) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 51.50% 46.62%,rgba(255,255,255,0.73) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 35.83% 67.24%,rgba(255,255,255,0.67) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 55.10% 62.57%,rgba(255,255,255,0.55) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 76.10% 16.48%,rgba(255,255,255,0.76) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 8.38% 88.10%,rgba(255,255,255,0.82) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 52.19% 11.45%,rgba(255,255,255,0.84) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 13.72% 92.43%,rgba(255,255,255,0.71) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 78.69% 84.29%,rgba(255,255,255,0.60) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 86.93% 43.45%,rgba(255,255,255,0.86) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 95.86% 76.80%,rgba(255,255,255,0.83) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 41.21% 72.24%,rgba(255,255,255,0.92) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 14.13% 8.60%,rgba(255,255,255,0.91) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 2.63% 83.49%,rgba(255,255,255,0.67) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 30.69% 54.58%,rgba(255,255,255,0.62) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 99.67% 22.17%,rgba(255,255,255,0.77) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 61.64% 76.19%,rgba(255,255,255,0.86) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 54.35% 59.69%,rgba(255,255,255,0.64) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 27.51% 31.49%,rgba(255,255,255,0.77) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 52.09% 59.49%,rgba(255,255,255,0.77) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 86.76% 71.66%,rgba(255,255,255,0.40) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 13.34% 26.88%,rgba(255,255,255,0.89) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 85.54% 47.23%,rgba(255,255,255,0.66) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 13.09% 99.23%,rgba(255,255,255,0.47) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 91.23% 78.81%,rgba(255,255,255,0.86) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 26.04% 94.99%,rgba(255,255,255,0.70) 0 55%, transparent 80%),
+radial-gradient(2px 2px at 55.63% 23.78%,rgba(255,255,255,0.79) 0 55%, transparent 80%),
+radial-gradient(1px 1px at 97.09% 70.63%,rgba(255,255,255,0.49) 0 55%, transparent 80%);opacity:.9}
+.space:after{content:"";position:absolute;inset:-30%;transform:rotate(-28deg);background:radial-gradient(ellipse 13% 40% at 52% 51%,rgba(245,220,203,.27),rgba(137,161,241,.17) 46%,transparent 85%),radial-gradient(ellipse 22% 60% at 48% 49%,rgba(106,127,219,.19),rgba(91,61,161,.17) 50%,transparent 85%),radial-gradient(ellipse 12% 35% at 55% 46%,rgba(206,150,238,.16),transparent 85%);filter:blur(23px)}
+main{max-width:960px;margin:0 auto;padding:44px 26px 110px;position:relative;z-index:1}
+nav{font-size:14px;padding:13px 0 25px;border-bottom:1px solid #34404d;color:#aabbd4}
+nav a{margin-right:20px}h1{font-size:clamp(30px,5vw,49px);line-height:1.15;color:#fff;letter-spacing:-.035em}h2{color:#87d9ff;border-top:1px solid #26313d;padding-top:24px;margin-top:52px;line-height:1.3}h3{color:#fff}p,li{color:#d7dce4}a{color:#79d4ff}strong{color:#fff}
+code{color:#c6f4ad;background:#171f28;border:1px solid #283441;border-radius:5px;padding:2px 5px;font-size:.9em}
+pre{overflow:auto;padding:20px;background:rgba(14,20,28,.92);border:1px solid #293744;border-radius:12px;line-height:1.5}pre code{background:none;border:0;padding:0}
+blockquote{border-left:4px solid #52bce9;background:rgba(16,26,36,.84);padding:12px 18px;margin:22px 0}
+table{border-collapse:collapse;width:100%;display:block;overflow:auto;margin:18px 0;background:rgba(8,14,24,.67)}td,th{border:1px solid #34404d;padding:9px 12px;vertical-align:top}tr:first-child{background:rgba(24,35,48,.9);font-weight:600}
+img{max-width:100%;height:auto}ul{padding-left:24px}li{margin:7px 0}hr{border:0;border-top:1px solid #34404d;margin:38px 0}
+@media print{body,.space{background:#000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}</style></head><body><div class="space" aria-hidden="true"></div><main><nav><a href="README.md">Markdown README</a><a href="https://github.com/hassankx/linux-self-healing-monitor">GitHub Repository</a></nav><h1>Linux Self-Healing Monitor</h1>
+<p>A dependency-free Python operations tool for monitoring, troubleshooting, and safely recovering Linux hosts. It is designed as a portfolio-quality SRE starter project and runs in <strong>observe-only mode by default</strong>.</p>
+<p><strong>Author:</strong> Khaled Hassan  </p>
+<p><strong>Focus:</strong> Linux | HPC | AI Infrastructure | Platform Reliability</p>
+<h2>What it monitors</h2>
+<ul>
+<li>CPU load relative to available CPU cores</li>
+<li>Memory pressure</li>
+<li>Disk use for local filesystems</li>
+<li>Failed systemd services</li>
+<li>Time synchronization state</li>
+<li>Default route and DNS resolver details</li>
+<li>High CPU and memory processes</li>
+<li>Recent error-level journal entries</li>
+<li>A transparent 0-100 health score with severity-based findings</li>
+<li>JSON and Markdown reports for incident handoff or automation pipelines</li>
+</ul>
+<h2>Safe recovery model</h2>
+<p>The tool never changes a system unless <code>--apply</code> is supplied. Even then, it only restarts services listed in <code>config.json</code>, applies a configurable cooldown, and validates each restart. It does not install packages, change firewall rules, alter network configuration, delete files, or reboot the host.</p>
+<h2>Quick start</h2>
+<pre><code>python3 self_healing_monitor.py</code></pre>
+<p>To write a JSON report:</p>
+<pre><code>python3 self_healing_monitor.py --report health-report.json</code></pre>
+<p>To create a Markdown incident handoff report:</p>
+<pre><code>python3 self_healing_monitor.py --format markdown --report incident-report.md</code></pre>
+<p>To allow listed service restarts after reviewing the configuration:</p>
+<pre><code>sudo python3 self_healing_monitor.py --apply --config config.json</code></pre>
+<h2>Configuration</h2>
+<p><code>config.json</code> contains thresholds and the only services that may be restarted. Start with an empty allowlist and add services only after testing your runbook.</p>
+<h2>Important</h2>
+<p>Use this as a starter project, not an unattended production remediation platform. Integrate monitoring, alerting, change control, backups, and environment-specific validation before enabling automated recovery in a production fleet.</p></main></body></html>
